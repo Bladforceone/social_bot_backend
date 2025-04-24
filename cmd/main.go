@@ -6,6 +6,7 @@ import (
 	"social_bot_backend/configs"
 	"social_bot_backend/internal/survey"
 	"social_bot_backend/pkg/db"
+	"social_bot_backend/pkg/midleware"
 )
 
 func main() {
@@ -24,7 +25,7 @@ func main() {
 
 	server := http.Server{
 		Addr:    ":8080",
-		Handler: router,
+		Handler: midleware.Logging(router),
 	}
 
 	fmt.Println("Listening on port 8080")
