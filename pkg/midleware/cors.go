@@ -10,6 +10,7 @@ func CORS(next http.Handler) http.Handler {
 			return
 		}
 		header := w.Header()
+		w.Header().Set("Access-Control-Allow-Origin", "http://158.160.44.229")
 		header.Set("Access-Control-Allow-Origin", origin)
 		header.Set("Access-Control-Allow-Credentials", "true")
 
