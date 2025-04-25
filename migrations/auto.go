@@ -29,13 +29,13 @@ func main() {
 		panic(fmt.Sprintf("Failed to connect to database: %v", err))
 	}
 	// Сносим всё к чертям
-	/*db.Migrator().DropTable(
+	db.Migrator().DropTable(
 		&survey.Survey{},
 		&survey.Question{},
 		&user.User{},
 		&user.CurrentUserQuestion{},
 		&user.UserAnswer{},
-	)*/
+	)
 	db.AutoMigrate(
 		&survey.Survey{},
 		&survey.Question{},
