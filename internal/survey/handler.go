@@ -33,6 +33,6 @@ func (h *SurveyHandler) CreateSurvey() http.HandlerFunc {
 			return
 		}
 
-		w.WriteHeader(http.StatusCreated)
+		w.WriteHeader(http.StatusOK)
 	}
 }
