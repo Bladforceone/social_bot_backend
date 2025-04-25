@@ -1,6 +1,7 @@
 package survey
 
 import (
+	"log"
 	"net/http"
 	"social_bot_backend/pkg/request"
 	"social_bot_backend/pkg/response"
@@ -23,12 +24,14 @@ func (h *SurveyHandler) CreateSurvey() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		surveyReq, err := request.HandleBody[SurveyCreateRequest](&w, r)
 		if err != nil {
+			log.Println(err)
 			response.JSON(w, err.Error(), http.StatusBadRequest)
 			return
 		}
 
 		err = h.SurveyService.CreateSurvey(surveyReq)
 		if err != nil {
+			log.Println(err)
 			response.JSON(w, err.Error(), http.StatusBadRequest)
 			return
 		}
