@@ -19,9 +19,10 @@ type User struct {
 
 type CurrentUserQuestion struct {
 	gorm.Model
-	UserID   uint `gorm:"not null;index"`
-	QuestID  uint `gorm:"not null;index"`
-	SurveyID uint `gorm:"not null;index"`
+	IsCompletedSurvey bool `gorm:"default:false"`
+	UserID            uint `gorm:"not null;index"`
+	QuestID           uint `gorm:"not null;index"`
+	SurveyID          uint `gorm:"not null;index"`
 }
 
 func (CurrentUserQuestion) TableName() string {
