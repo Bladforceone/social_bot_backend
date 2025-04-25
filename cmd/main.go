@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"social_bot_backend/configs"
 	"social_bot_backend/internal/survey"
@@ -29,5 +30,8 @@ func main() {
 	}
 
 	fmt.Println("Listening on port 8080")
-	server.ListenAndServe()
+	err := server.ListenAndServe()
+	if err != nil {
+		log.Println(err)
+	}
 }
