@@ -1,7 +1,6 @@
 package user
 
 import (
-	"gorm.io/datatypes"
 	"gorm.io/gorm"
 	"time"
 )
@@ -31,10 +30,10 @@ func (CurrentUserQuestion) TableName() string {
 
 type UserAnswer struct {
 	gorm.Model
-	UserID   uint           `gorm:"not null;index"`
-	QuestID  uint           `gorm:"not null;index"`
-	SurveyID uint           `gorm:"not null;index"`
-	Answer   datatypes.JSON `gorm:"type:jsonb;not null"`
+	UserID   uint     `gorm:"not null;index"`
+	QuestID  uint     `gorm:"not null;index"`
+	SurveyID uint     `gorm:"not null;index"`
+	Answer   []string `gorm:"type:text[];not null"`
 }
 
 func (UserAnswer) TableName() string {
