@@ -18,6 +18,8 @@ type SurveyHandler struct {
 func NewSurveyHandler(router *http.ServeMux, deps SurveyHandlerDeps) {
 	handler := SurveyHandler{SurveyService: deps.SurveyService}
 	router.HandleFunc("POST /survey", handler.CreateSurvey())
+	router.HandleFunc("GET /survey", handler.GetAllSurvey())
+	router.HandleFunc("GET /survey/{id}", handler.GetSurveyById())
 }
 
 func (h *SurveyHandler) CreateSurvey() http.HandlerFunc {
@@ -37,5 +39,25 @@ func (h *SurveyHandler) CreateSurvey() http.HandlerFunc {
 		}
 
 		w.WriteHeader(http.StatusOK)
+	}
+}
+
+func (h *SurveyHandler) GetAllSurvey() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		surveys, err := h.SurveyService.GetAllSurvey()
+		if err != nil {
+			log.Println(err)
+			response.JSON(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+
+		response.JSON(w, surveys, http.StatusOK)
+	}
+}
+
+// GetSurveyById TODO: Implement
+func (h *SurveyHandler) GetSurveyById() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		return
 	}
 }

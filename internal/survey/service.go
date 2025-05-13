@@ -24,3 +24,16 @@ func (service *SurveyService) CreateSurvey(survey *SurveyCreateRequest) error {
 
 	return err
 }
+func (service *SurveyService) GetAllSurvey() (*[]AllSurveyResponse, error) {
+	survey := service.SurveyRepository.GetAllSurvey()
+	var response []AllSurveyResponse
+
+	for _, v := range *survey {
+		response = append(response, AllSurveyResponse{
+			Id:   v.ID,
+			Name: v.Name,
+		})
+	}
+
+	return &response, nil
+}

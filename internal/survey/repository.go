@@ -15,3 +15,9 @@ func NewSurveyRepository(db *db.DB) *SurveyRepository {
 func (repo *SurveyRepository) CreateSurvey(survey *Survey) error {
 	return repo.DB.Create(survey).Error
 }
+
+func (repo *SurveyRepository) GetAllSurvey() *[]Survey {
+	var survey []Survey
+	repo.DB.Find(&survey)
+	return &survey
+}

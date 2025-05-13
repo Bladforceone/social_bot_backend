@@ -10,3 +10,8 @@ type SurveyCreateRequest struct {
 	IsPublic    bool             `json:"is_public"`
 	Questions   []datatypes.JSON `json:"questions"`
 }
+
+type AllSurveyResponse struct {
+	Id   uint   `json:"id"`
+	Name string `json:"name"`
+}
