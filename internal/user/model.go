@@ -1,7 +1,7 @@
 package user
 
 import (
-	"gorm.io/datatypes"
+	"github.com/lib/pq"
 	"gorm.io/gorm"
 	"time"
 )
@@ -34,7 +34,7 @@ type UserAnswer struct {
 	UserID   uint           `gorm:"not null;index"`
 	QuestID  uint           `gorm:"not null;index"`
 	SurveyID uint           `gorm:"not null;index"`
-	Answer   datatypes.JSON `gorm:"type:jsonb;not null"`
+	Answer   pq.StringArray `gorm:"type:text[];not null"`
 }
 
 func (UserAnswer) TableName() string {

@@ -15,3 +15,14 @@ type AllSurveyResponse struct {
 	Id   uint   `json:"id"`
 	Name string `json:"name"`
 }
+
+type SurveyResponse struct {
+	Question string   `json:"question"`
+	Type     string   `json:"type"`
+	Answers  []Answer `json:"answers"`
+}
+
+type Answer struct {
+	Answer string `json:"answer"`
+	Count  int    `json:"count"`
+}

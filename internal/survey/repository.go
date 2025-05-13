@@ -21,3 +21,13 @@ func (repo *SurveyRepository) GetAllSurvey() *[]Survey {
 	repo.DB.Find(&survey)
 	return &survey
 }
+
+func (repo *SurveyRepository) GetQuestionWithAnswers(id uint) (*Survey, error) {
+	var survey Survey
+	err := repo.DB.Preload("Questions.UserAnswer").First(&survey, id).Error
+	if err != nil {
+		return nil, err
+	}
+
+	return &survey, nil
+}
